@@ -6,7 +6,7 @@ const Book = require("./models/book");
 const app = express();
 app.use(express.static("public"));
 
-const dbURI = "mongodb+srv://linthit:thit72htwe@testmongo.ghtm1ao.mongodb.net/";
+const dbURI = "mongodb+srv://<username>:<password>@testmongo.ghtm1ao.mongodb.net/";
 mongoose
   .connect(dbURI)
   .then((result) => app.listen(3000))
