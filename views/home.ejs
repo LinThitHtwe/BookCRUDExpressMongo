@@ -1,0 +1,49 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="title">
+      <p>Book Lists</p>
+    </div>
+    <div class="tablegrid">
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Genre</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+        <% if(books.length >0) { %> <% books.forEach(book => { %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.author %></td>
+          <td><%= book.genre %></td>
+          <td><%= book.price %></td>
+          <td class="actiontd">
+            <a class="updatetd" href="/update/<%= book._id %>">Update</a>
+            <a href="#" class="delete" data-id="<%= book._id %>">Delete</a>
+          </td>
+        </tr>
+        <% }) %> <% } else { %>
+        <tr>
+          <td>No Book right now</td>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+    <script>
+      const deleteBtn = document.querySelector("a.delete");
+      deleteBtn.addEventListener("click", (e) => {
+        const deleteUrl = `/delete/${deleteBtn.dataset.id}`;
+        fetch(deleteUrl, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => (window.location.href = data.redirect))
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </body>
+</html>

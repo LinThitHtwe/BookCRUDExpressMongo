@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOOK CRUD with Express EJS MongoDB</title>
+    <!-- <link rel="stylesheet" href="update.css" /> -->
+  </head>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <h1>This is Update Page</h1>
+    <form action="/update/<%= book.id %>" method="post">
+      <label> Title :</label>
+      <input type="text" name="title" value="<%= book.title %>" />
+      <label>Author:</label>
+      <input type="text" name="author" value="<%= book.author %>" />
+      <label>Genre:</label>
+      <input type="text" name="genre" value="<%= book.genre %>" />
+      <label>Price:</label>
+      <input type="text" name="price" value="<%= book.price %>" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>

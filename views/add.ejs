@@ -1,0 +1,20 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <h1>This is Add Page</h1>
+    <form action="/add" method="post">
+      <label> Title :</label>
+      <input type="text" name="title" />
+      <label>Author:</label>
+      <input type="text" name="author" />
+      <label>Genre:</label>
+      <input type="text" name="genre" />
+      <label>Price:</label>
+      <input type="text" name="price" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  background-color: #5278f7;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.navbar li {
+  float: right;
+}
+
+.navbar li a {
+  display: block;
+  padding: 8px;
+  font-size: 30px;
+  color: white;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 50px;
+  text-align: center;
+}
+
+.tablegrid {
+  margin: auto;
+  width: 80%;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+.tablegrid table {
+  margin: auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tablegrid td,
+.tablegrid th {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.tablegrid tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tablegrid tr:hover {
+  background-color: #ddd;
+}
+
+.tablegrid th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5278f7;
+  color: white;
+  text-align: left;
+  font-size: 20px;
+}
+
+.tablegrid td {
+  font-size: 20px;
+}
+.actiontd {
+  text-align: center;
+}
+
+.delete {
+  background-color: red;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 15px 32px;
+  margin-left: 10%;
+  color: white;
+  text-decoration: none;
+}
+
+.updatetd {
+  background-color: grey;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 15px 32px;
+  margin-left: 10%;
+  color: white;
+  text-decoration: none;
+}
