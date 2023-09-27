@@ -9,7 +9,8 @@ const env = require("dotenv").config();
 const app = express();
 app.use(express.static("public"));
 
-const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@testmongo.ghtm1ao.mongodb.net/`;
+const dbURI =
+  "mongodb+srv://<username>:<password>@testmongo.ghtm1ao.mongodb.net/";
 mongoose
   .connect(dbURI)
   .then((result) => app.listen(3000))
