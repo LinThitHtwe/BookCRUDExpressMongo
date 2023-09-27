@@ -1,12 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const Book = require("./models/book");
+const bookController = require("./controllers/bookController");
+const errorController = require("./controllers/errorController");
+
+const env = require("dotenv").config();
 
 const app = express();
 app.use(express.static("public"));
 
-const dbURI = "mongodb+srv://<username>:<password>@testmongo.ghtm1ao.mongodb.net/";
+const dbURI =
+  "mongodb+srv://<username>:<password>@testmongo.ghtm1ao.mongodb.net/";
 mongoose
   .connect(dbURI)
   .then((result) => app.listen(3000))
@@ -15,49 +19,16 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  Book.find()
-    .sort({ createdAt: -1 })
-    .then((result) => res.render("home", { books: result }))
-    .catch((err) => console.log(err));
-});
+app.get("/", bookController.home_page);
 
-app.get("/add", (req, res) => {
-  res.render("add");
-});
+app.get("/add", bookController.show_add_book);
 
-app.post("/add", (req, res) => {
-  const book = new Book(req.body);
-  book
-    .save()
-    .then((result) => res.redirect("/"))
-    .catch((err) => console.log(err));
-});
+app.post("/add", bookController.add_book);
 
-app.get("/update/:id", (req, res) => {
-  const id = req.params.id;
-  Book.findById(id)
-    .then((result) => res.render("updatepage", { book: result }))
-    .catch((err) => console.log(err));
-});
+app.get("/update/:id", bookController.show_update_book);
 
-app.post("/update/:id", (req, res) => {
-  const id = req.params.id;
-  const { title, author, genre, price } = req.body;
-  Book.findByIdAndUpdate(id, { title, author, genre, price })
-    .then((result) => res.redirect("/"))
-    .catch((err) => console.log(err));
-});
+app.post("/update/:id", bookController.update_book);
 
-app.delete("/delete/:id", (req, res) => {
-  const id = req.params.id;
-  Book.findOneAndDelete(id)
-    .then((result) => {
-      res.json({ redirect: "/" });
-    })
-    .catch((err) => console.log(err));
-});
+app.delete("/delete/:id", bookController.delete_book);
 
-app.use((req, res) => {
-  res.status(404).render("404");
-});
+app.use(errorController.page_not_found);
